@@ -9,5 +9,5 @@ urlpatterns = [
     path('token_olish/', TokenObtainPairView.as_view()),
     path('token_yangilash/', TokenRefreshView.as_view()),
 
-    # path('maqola/<int:pk>/', MaqolaAPIView.as_view()),
+    path('maqola/<int:pk>/', MaqolaAPIView.as_view()),
 ]

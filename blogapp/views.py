@@ -25,11 +25,11 @@ class MaqolalarAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_406_NOT_ACCEPTABLE)
 
 
-# class MaqolaAPIView(APIView):
-#     def get(self, request, pk):
-#         maqola = Maqola.objects.get(id=pk)
-#         korishlar_soni = maqola.korish_soni
-#         maqola.korish_soni = korishlar_soni + 1
-#         maqola.save()
-#         serializer = MaqolaSerializer(maqola)
-#         return Response(serializer.data)
+class MaqolaAPIView(APIView):
+    def get(self, request, pk):
+        maqola = Maqola.objects.get(id=pk)
+        korishlar_soni = maqola.korish_soni
+        maqola.korish_soni = korishlar_soni + 1
+        maqola.save()
+        serializer = MaqolaSerializer(maqola)
+        return Response(serializer.data)
