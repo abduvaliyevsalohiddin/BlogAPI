@@ -9,7 +9,7 @@ from .models import *
 
 class MaqolalarAPIView(APIView):
     # authentication_classes = []
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly] # IsAuthenticatedOrReadOnly orqali o'qish hamma uchun ochiq, boshqa holat uchun yopiq
 
     def get(self, request):
         maqolalar = Maqola.objects.all()
