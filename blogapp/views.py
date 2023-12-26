@@ -33,3 +33,14 @@ class MaqolaAPIView(APIView):
         maqola.save()
         serializer = MaqolaSerializer(maqola)
         return Response(serializer.data)
+
+    def update(self, request, pk):
+        yangi = request.data
+        maqola = Maqola.objects.get(id=pk)
+        serializer = MaqolaSerializer(maqola, data=yangi)
+        if maqola.muallif != request.user:
+            return Response({"xabar": "Maqola o'zingizga tegishli emas"}, status.HTTP_400_BAD_REQUEST)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)
