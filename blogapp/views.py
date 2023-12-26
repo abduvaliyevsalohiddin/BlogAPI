@@ -44,3 +44,10 @@ class MaqolaAPIView(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors)
+
+    def delete(self, request, pk):
+        maqola = Maqola.objects.get(id=pk)
+        if maqola.muallif != request.user:
+            return Response({"xabar": "Maqola o'zingizga tegishli emas"}, status.HTTP_400_BAD_REQUEST)
+        maqola.delete()
+        return Response(status.HTTP_200_OK)
